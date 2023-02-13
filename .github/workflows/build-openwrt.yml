@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Actions-x86-5.15
 
 on:
   repository_dispatch:
@@ -20,15 +20,15 @@ on:
         default: 'false'
 
 env:
-  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_URL: https://git.openwrt.org/openwrt/openwrt.git
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: false
+  UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
-  UPLOAD_COWTRANSFER: false
+  UPLOAD_COWTRANSFER: true
   UPLOAD_WETRANSFER: false
   UPLOAD_RELEASE: false
   TZ: Asia/Shanghai
@@ -81,6 +81,13 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
+        sudo rm -r target/linux/x86/Makefile
+        sudo rm -r include/kernel-defaults.mk
+        sudo rm -r include/target.mk
+        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/target.mk include/target.mk
+        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/kernel-defaults.mk include/kernel-defaults.mk
+        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/.vermagic .vermagic       
+        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/Makefile target/linux/x86/Makefile
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
@@ -97,6 +104,7 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+        sed -i 's/\/bin\/login/\/bin\/login -f root/' ./feeds/packages/utils/ttyd/files/ttyd.config
 
     - name: Compile the firmware
       id: compile
