@@ -92,7 +92,7 @@ jobs:
         cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/feeds/packages/net/mosdns feeds/packages/net/mosdns
         cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/luci/luci-app-mosdns package/feeds/luci/luci-app-mosdns
         cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/packages/mosdns package/feeds/packages/mosdns
-        sudo rm -r ~/work/Actions-m8621/Actions-m8621/lede
+        sudo rm -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede
 
     - name: Load custom configuration
       run: |
