@@ -76,22 +76,22 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
       
     - name: Update lede feeds
-      run: cd ~/work/Actions-m8621/Actions-m8621/lede && ./scripts/feeds update -a
+      run: cd ~/work/Actions-x86-5.15/Actions-x86-5.15/lede && ./scripts/feeds update -a
     
     - name: Install lede feeds
-      run: cd ~/work/Actions-m8621/Actions-m8621/lede && ./scripts/feeds install -a
+      run: cd ~/work/Actions-x86-5.15/Actions-x86-5.15/lede && ./scripts/feeds install -a
       
     - name: cp mosdns
       run: |
-        cd ~/work/Actions-m8621/Actions-m8621/openwrt
+        cd ~/work/Actions-x86-5.15/Actions-x86-5.15/openwrt
         sudo rm -r feeds/smpackage/luci-app-mosdns
         sudo rm -r feeds/smpackage/mosdns
         sudo rm -r package/feeds/smpackage/luci-app-mosdns
         sudo rm -r package/feeds/smpackage/mosdns
-        cp -r ~/work/Actions-m8621/Actions-m8621/lede/feeds/luci/applications/luci-app-mosdns feeds/luci/applications/luci-app-mosdns
-        cp -r ~/work/Actions-m8621/Actions-m8621/lede/feeds/packages/net/mosdns feeds/packages/net/mosdns
-        cp -r ~/work/Actions-m8621/Actions-m8621/lede/package/feeds/luci/luci-app-mosdns package/feeds/luci/luci-app-mosdns
-        cp -r ~/work/Actions-m8621/Actions-m8621/lede/package/feeds/packages/mosdns package/feeds/packages/mosdns
+        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/feeds/luci/applications/luci-app-mosdns feeds/luci/applications/luci-app-mosdns
+        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/feeds/packages/net/mosdns feeds/packages/net/mosdns
+        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/luci/luci-app-mosdns package/feeds/luci/luci-app-mosdns
+        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/packages/mosdns package/feeds/packages/mosdns
         sudo rm -r ~/work/Actions-m8621/Actions-m8621/lede
 
     - name: Load custom configuration
