@@ -76,23 +76,23 @@ jobs:
       run: cd openwrt && ./scripts/feeds install -a
       
     - name: Update lede feeds
-      run: cd ~/work/Actions-x86-5.15/Actions-x86-5.15/lede && ./scripts/feeds update -a
+      run: cd ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede && ./scripts/feeds update -a
     
     - name: Install lede feeds
-      run: cd ~/work/Actions-x86-5.15/Actions-x86-5.15/lede && ./scripts/feeds install -a
+      run: cd ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede && ./scripts/feeds install -a
       
     - name: cp mosdns
       run: |
-        cd ~/work/Actions-x86-5.15/Actions-x86-5.15/openwrt
+        cd ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/openwrt
         sudo rm -r feeds/smpackage/luci-app-mosdns
         sudo rm -r feeds/smpackage/mosdns
         sudo rm -r package/feeds/smpackage/luci-app-mosdns
         sudo rm -r package/feeds/smpackage/mosdns
-        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/feeds/luci/applications/luci-app-mosdns feeds/luci/applications/luci-app-mosdns
-        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/feeds/packages/net/mosdns feeds/packages/net/mosdns
-        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/luci/luci-app-mosdns package/feeds/luci/luci-app-mosdns
-        cp -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede/package/feeds/packages/mosdns package/feeds/packages/mosdns
-        sudo rm -r ~/work/Actions-x86-5.15/Actions-x86-5.15/lede
+        cp -r ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede/feeds/luci/applications/luci-app-mosdns feeds/luci/applications/luci-app-mosdns
+        cp -r ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede/feeds/packages/net/mosdns feeds/packages/net/mosdns
+        cp -r ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede/package/feeds/luci/luci-app-mosdns package/feeds/luci/luci-app-mosdns
+        cp -r ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede/package/feeds/packages/mosdns package/feeds/packages/mosdns
+        sudo rm -r ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/lede
 
     - name: Load custom configuration
       run: |
@@ -104,10 +104,10 @@ jobs:
         sudo rm -r target/linux/x86/Makefile
         sudo rm -r include/kernel-defaults.mk
         sudo rm -r include/target.mk
-        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/target.mk include/target.mk
-        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/kernel-defaults.mk include/kernel-defaults.mk
-        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/.vermagic .vermagic       
-        cp -f ~/work/Actions-x86-5.15/Actions-x86-5.15/Makefile target/linux/x86/Makefile
+        cp -f ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/target.mk include/target.mk
+        cp -f ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/kernel-defaults.mk include/kernel-defaults.mk
+        cp -f ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/.vermagic .vermagic       
+        cp -f ~/work/mjngchu-Actions-x86-5.15/mjngchu-Actions-x86-5.15/Makefile target/linux/x86/Makefile
 
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
